@@ -57,7 +57,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 /* ---------- hero ---------- */
 .hero .inner{display:grid;grid-template-columns:1.25fr .9fr;gap:clamp(24px,5vw,80px);align-items:center}
 .hero h1{font-size:clamp(3.2rem,9.5vw,8.6rem);color:var(--navy);line-height:.9;letter-spacing:-.02em}
-.hero h1 span{display:block;color:#C8C3B8}
+.hero h1 span{display:block;color:#8E877A}
 .hero .role{font-size:clamp(1.05rem,1.6vw,1.35rem);margin:1.1em 0 .7em;font-weight:600}
 .portrait{position:relative;aspect-ratio:1/1.05;background:#fff;overflow:hidden;border-radius:4px}
 .portrait img{width:100%;height:100%;object-fit:cover;object-position:top}
@@ -95,6 +95,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 .media{position:relative;display:grid;gap:10px}
 .media .main{width:100%;height:min(62vh,640px);object-fit:cover;border-radius:4px}
 .media .row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.media .row a{display:block}
 .media .row img{width:100%;height:min(16vh,150px);object-fit:cover;border-radius:3px;background:#fff}
 .media .row.contain img{object-fit:contain}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin:1em 0}
@@ -136,6 +137,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
   .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
   .cards{grid-template-columns:1fr}
   .dots{display:none}
+  .top{display:none}
   .cue{display:none}
 }
 @media (min-width:901px) and (max-height:820px){
@@ -148,7 +150,8 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
   .num{font-size:clamp(2.4rem,8vh,5rem)}
   p.lead{font-size:.98rem}
   .media .main{height:52vh}
-  .media .row img{height:13vh}
+  .media .row a{display:block}
+.media .row img{height:13vh}
   .tl li{margin-bottom:.8em}
   .gal{grid-auto-rows:17vh}
   .card{padding:14px}
@@ -260,15 +263,32 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
   </div>
 </section>
 
+
+<section class="slide proj" data-title="Tantallon library">
+  <div class="inner">
+    <div class="media rv">
+      <img class="main" src="assets/img/tl_render.jpg" alt="The library set into the clifftop, facing Tantallon Castle" loading="lazy">
+      <div class="row"><a href="assets/img/tl_1.jpg" target="_blank"><img src="assets/img/tl_1.jpg" alt="Board 1: the building is not seen, it is discovered" loading="lazy"></a><a href="assets/img/tl_2.jpg" target="_blank"><img src="assets/img/tl_2.jpg" alt="Board 2: plans and spaces" loading="lazy"></a><a href="assets/img/tl_3.jpg" target="_blank"><img src="assets/img/tl_3.jpg" alt="Board 3: the carved section and the AI workflow" loading="lazy"></a></div>
+    </div>
+    <div>
+      <div class="num rv">03</div>
+      <div class="kicker rv d1">AI-assisted concept design</div>
+      <h2 class="rv d1">Tantallon coastal library &amp; café</h2>
+      <p class="lead rv d2">A landform library set into the clifftop at Tyninghame, East Lothian, facing the ruin of Tantallon Castle. The brief was turned into six vernacular rules taken from the Hebridean blackhouse, then generated with AI and curated against them: twelve logged interactions, three rejected directions, every output checked by hand.</p>
+      <div class="tags rv d3"><span>Concept design</span><span>Generative AI</span><span>Curation workflow</span><span>Environmental logic</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- 5 · STONE FAÇADE -->
-<section class="slide proj" data-title="Stone façade">
+<section class="slide proj flip" data-title="Stone façade">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/stone.jpg" alt="Stone façade with chamfered panels" loading="lazy">
       <div class="row contain"><img src="assets/img/stone_axo.jpg" alt="Panel nesting on the stone slab" loading="lazy"><img src="assets/img/stone_grid.jpg" alt="Selected panels in the façade bay" loading="lazy"><img src="assets/img/stone_detail.jpg" alt="Chamfered corners forming a diamond void" loading="lazy"></div>
     </div>
     <div>
-      <div class="num rv">03</div>
+      <div class="num rv">04</div>
       <div class="kicker rv d1">Constraint → rule</div>
       <h2 class="rv d1">Stone façade</h2>
       <p class="lead rv d2">Chamfered stone panels had to be cut from fixed slab sizes, and every offcut is stone paid for and wasted. I set the layout up in Grasshopper with slab size and panel profile as inputs, compared aligned, rotated, staggered and mixed nesting, and carried the selected layout onto the façade.</p>
@@ -278,14 +298,14 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 6 · BRIDGE -->
-<section class="slide proj flip" data-title="Bridge roof">
+<section class="slide proj" data-title="Bridge roof">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/bridge.jpg" alt="Bridge with a curved roof skin between two buildings" loading="lazy">
       <div class="row"><img src="assets/img/bridge_cafe.jpg" alt="Café inside the bridge under the roof skin" loading="lazy"><img src="assets/img/bridge_wide.jpg" alt="Bridge seen from the plaza" loading="lazy"><img src="assets/img/hero.jpg" alt="Sketch and render of the bridge" loading="lazy"></div>
     </div>
     <div>
-      <div class="num rv">04</div>
+      <div class="num rv">05</div>
       <div class="kicker rv d1">Commercial complex</div>
       <h2 class="rv d1">Bridge roof skin</h2>
       <p class="lead rv d2">A bridge links two buildings and holds a café. The pedestrian route had to stay level while the roof skin rises smoothly above the supporting truss. I compared roof profiles against those fixed constraints in Grasshopper, then coordinated the layers as one model in Revit.</p>
@@ -295,13 +315,13 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 7 · SHADING -->
-<section class="slide proj" data-title="Shading">
+<section class="slide proj flip" data-title="Shading">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/shading.jpg" alt="Curved façade with shading that changes with orientation" loading="lazy">
     </div>
     <div>
-      <div class="num rv">05</div>
+      <div class="num rv">06</div>
       <div class="kicker rv d1">Environment → form</div>
       <h2 class="rv d1">Shading by orientation</h2>
       <p class="lead rv d2">The same window bay gets different shading depending on where it faces: east-facing openings get closer, deeper elements; less exposed faces get lighter, more open ones. Two parameters drive it, spacing and depth, which later became the starting point for the daylight surrogate.</p>
@@ -311,14 +331,14 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 8 · VILLA -->
-<section class="slide proj flip" data-title="Villa 001">
+<section class="slide proj" data-title="Villa 001">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/villa.jpg" alt="Villa 001 with a terrace shade structure and pool" loading="lazy">
       <div class="row contain"><img src="assets/img/villa_plan.jpg" alt="Ground-floor plan" loading="lazy"><img src="assets/img/villa_window.jpg" alt="Prefabricated window panel" loading="lazy"><img src="assets/img/villa_stair.jpg" alt="Prefabricated stair" loading="lazy"></div>
     </div>
     <div>
-      <div class="num rv">06</div>
+      <div class="num rv">07</div>
       <div class="kicker rv d1">Design → construction</div>
       <h2 class="rv d1">Villa 001</h2>
       <p class="lead rv d2">A 188 m² private residence I designed in Revit from brief to construction drawings, now being built to those drawings: concrete frame, steel beams for the terrace shade structure, and prefabricated window panels and stairs that I specified and ordered.</p>
@@ -328,14 +348,14 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 9 · CROFT -->
-<section class="slide proj" data-title="AI workflow">
+<section class="slide proj flip" data-title="AI workflow">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/croft.jpg" alt="Coastal library concept used as a CROFT test brief" loading="lazy">
       <div class="row contain"><img src="assets/img/obj_chair.jpg" alt="Retrieved 3D model: chair" loading="lazy"><img src="assets/img/obj_shelf.jpg" alt="Retrieved 3D model: shelving" loading="lazy"><img src="assets/img/obj_wall.jpg" alt="Retrieved 3D model: stone wall" loading="lazy"></div>
     </div>
     <div>
-      <div class="num rv">07</div>
+      <div class="num rv">08</div>
       <div class="kicker rv d1">MSc research · 82%</div>
       <h2 class="rv d1">AI in the design workflow</h2>
       <p class="lead rv d2">CROFT turns a written design brief into structured queries with LLM steps, retrieves 3D models through the Sketchfab API and puts each result to the designer to keep or reject, with every decision logged. The architect keeps the decision; the AI does the searching.</p>
@@ -344,30 +364,93 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
   </div>
 </section>
 
-<!-- 10 · VISUALISATION -->
-<section class="slide" data-title="Visualisation" style="padding-top:44px;padding-bottom:28px">
+
+<section class="slide proj" data-title="Façade">
   <div class="inner">
-    <div class="num rv">08</div>
-    <div class="kicker rv d1">Interiors · façades · lighting</div>
-    <h2 class="rv d1" style="margin-bottom:0">Visualisation</h2>
-    <div class="gal rv d2">
-      <img class="w2 h2" src="assets/img/int1.jpg" alt="Residential living room" loading="lazy">
-      <img src="assets/img/kit1.jpg" alt="Kitchen island" loading="lazy">
-      <img class="h2" src="assets/img/night2.jpg" alt="Residential façade at night, entrance" loading="lazy">
-      <img src="assets/img/kit2.jpg" alt="Kitchen joinery" loading="lazy">
-      <img src="assets/img/night1.jpg" alt="Residential façade at night" loading="lazy">
-      <img src="assets/img/int2.jpg" alt="Living room seating" loading="lazy">
-      <img src="assets/img/kit3.jpg" alt="Kitchen detail" loading="lazy">
-      <img src="assets/img/night3.jpg" alt="Façade lighting detail" loading="lazy">
+    <div class="media rv">
+      <img class="main" src="assets/img/fd_1.jpg" alt="Apartment façade by day" loading="lazy">
+      <div class="row"><img src="assets/img/fd_2.jpg" alt="Façade, corner view" loading="lazy"><img src="assets/img/fd_3.jpg" alt="Façade, street level" loading="lazy"><img src="assets/img/night1.jpg" alt="Night façade" loading="lazy"></div>
     </div>
-    <p class="note rv d3">Visualisations prepared for portfolio presentation from project material; some images are illustrative.</p>
+    <div>
+      <div class="num rv">09</div>
+      <div class="kicker rv d1">Visualisation · residential</div>
+      <h2 class="rv d1">Apartment façade</h2>
+      <p class="lead rv d2">A mid-rise residential façade of stepped white frames and planted balconies, shown in its street context from three viewpoints.</p>
+      <div class="tags rv d3"><span>Exterior visualisation</span><span>Façade design</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide proj flip" data-title="Night façade">
+  <div class="inner">
+    <div class="media rv">
+      <img class="main" src="assets/img/fn_main.jpg" alt="Residential façade lit at night" loading="lazy">
+      <div class="row"><img src="assets/img/fn_2.jpg" alt="Entrance at night" loading="lazy"><img src="assets/img/fn_3.jpg" alt="Façade detail" loading="lazy"><img src="assets/img/fn_4.jpg" alt="Upper storeys" loading="lazy"></div>
+    </div>
+    <div>
+      <div class="num rv">10</div>
+      <div class="kicker rv d1">Visualisation · lighting</div>
+      <h2 class="rv d1">Residential façade at night</h2>
+      <p class="lead rv d2">Recessed linear lighting traces the façade's stepped frames and fluted panels, studied from the street and in close-up.</p>
+      <div class="tags rv d3"><span>3ds Max</span><span>V-Ray</span><span>Lighting design</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide proj" data-title="Interiors">
+  <div class="inner">
+    <div class="media rv">
+      <img class="main" src="assets/img/ri_main.jpg" alt="Living room with sculpted ceiling" loading="lazy">
+      <div class="row"><img src="assets/img/ri_2.jpg" alt="Kitchen and dining" loading="lazy"><img src="assets/img/ri_3.jpg" alt="Kitchen" loading="lazy"><img src="assets/img/kit2.jpg" alt="Kitchen joinery" loading="lazy"></div>
+    </div>
+    <div>
+      <div class="num rv">11</div>
+      <div class="kicker rv d1">Visualisation · residential interior</div>
+      <h2 class="rv d1">Living, dining and kitchen</h2>
+      <p class="lead rv d2">A residential interior: sculpted ceiling coves, a feature pendant, a dark joinery wall and a kitchen island, with day and evening lighting.</p>
+      <div class="tags rv d3"><span>Interior design</span><span>3ds Max</span><span>V-Ray</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide proj flip" data-title="Retail">
+  <div class="inner">
+    <div class="media rv">
+      <img class="main" src="assets/img/rs_main.jpg" alt="Electronics store interior" loading="lazy">
+      <div class="row"><img src="assets/img/rs_2.jpg" alt="Display joinery" loading="lazy"><img src="assets/img/rs_3.jpg" alt="Headphone wall" loading="lazy"><img src="assets/img/rs_4.jpg" alt="Arched feature wall" loading="lazy"></div>
+    </div>
+    <div>
+      <div class="num rv">12</div>
+      <div class="kicker rv d1">Visualisation · retail interior</div>
+      <h2 class="rv d1">Electronics store</h2>
+      <p class="lead rv d2">A retail fit-out in timber joinery and white render: display niches, product tables and an arched feature wall.</p>
+      <div class="tags rv d3"><span>Retail fit-out</span><span>Joinery design</span><span>Visualisation</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide proj" data-title="Bathrooms">
+  <div class="inner">
+    <div class="media rv">
+      <img class="main" src="assets/img/ba_main.jpg" alt="Bathroom with backlit panels" loading="lazy">
+      <div class="row"><img src="assets/img/ba_2.jpg" alt="Stone bathroom" loading="lazy"><img src="assets/img/ba_3.jpg" alt="Stone vanity" loading="lazy"><img src="assets/img/ba_4.jpg" alt="Terrazzo bathroom" loading="lazy"></div>
+    </div>
+    <div>
+      <div class="num rv">13</div>
+      <div class="kicker rv d1">Visualisation · bathrooms</div>
+      <h2 class="rv d1">Bathrooms, three schemes</h2>
+      <p class="lead rv d2">Three bathroom schemes from dark stone and backlit panels to pale terrazzo and blue tiling, each with its own lighting.</p>
+      <div class="tags rv d3"><span>Interior design</span><span>Materials</span><span>Lighting</span></div>
+      <p class="note rv d4">Visualisations prepared for client presentation; images are illustrative.</p>
+      <a class="link rv d4" href="assets/Kian_Shafiei_Visualisation_Portfolio.pdf" target="_blank" rel="noopener">Download the visualisation portfolio (PDF) →</a>
+    </div>
   </div>
 </section>
 
 <!-- 11 · CODE -->
 <section class="slide" data-title="Code">
   <div class="inner">
-    <div class="num rv">09</div>
+    <div class="num rv">14</div>
     <div class="kicker rv d1">Machine learning · tested · on GitHub</div>
     <h2 class="rv d1" style="margin-bottom:0">More AI projects</h2>
     <div class="cards">
@@ -392,6 +475,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
       <a class="btn" href="https://www.linkedin.com/in/kianshafiei" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn" href="https://github.com/kianshafiei" target="_blank" rel="noopener">GitHub</a>
       <a class="btn" href="assets/Kian_Shafiei_CV.pdf" download>Download CV</a>
+      <a class="btn" href="assets/Kian_Shafiei_Visualisation_Portfolio.pdf" target="_blank" rel="noopener">Visualisation portfolio</a>
     </div>
     <svg class="rv d4" viewBox="0 0 760 170" fill="none" stroke="#fff" stroke-width="1.2" aria-hidden="true">
       <path d="M10 160H750"/><path d="M70 160V40h60v120M70 40c0-26 60-26 60 0"/><path d="M75 60h50M75 80h50M75 100h50M75 120h50M75 140h50"/>
