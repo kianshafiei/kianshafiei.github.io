@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kian Shafiei — Architecture and AI</title>
+<meta name="description" content="Kian Shafiei: architecture graduate with an MSc in Applied AI for Engineering. Computational design, BIM and machine learning for the built environment.">
+<meta property="og:title" content="Kian Shafiei — Architecture and AI">
+<meta property="og:description" content="Computational design, BIM and machine learning for the built environment.">
+<meta property="og:image" content="https://kianshafiei.github.io/assets/img/hero.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231F3A8A'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='white' text-anchor='middle'%3EKS%3C/text%3E%3C/svg%3E">
+<style>
+@font-face{font-family:Plex;src:url(assets/fonts/IBMPlexSans-Regular.ttf) format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:Plex;src:url(assets/fonts/IBMPlexSans-SemiBold.ttf) format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:Plex;src:url(assets/fonts/IBMPlexSans-Italic.ttf) format("truetype");font-style:italic;font-display:swap}
+:root{
+  --paper:#F4F1EA; --paper-2:#EBE6DB; --ink:#1A1D23; --muted:#5F6673; --line:#D6D0C3;
+  --navy:#1F3A8A; --navy-2:#162C6B; --accent:#C9A86A;
+  --pad:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{font-family:Plex,system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+
+/* ---------- slides ---------- */
+.slide{position:sticky;top:0;min-height:100vh;height:100vh;scroll-snap-align:start;overflow:hidden;
+  background:var(--paper);display:flex;align-items:center;padding:var(--pad);
+  box-shadow:0 -24px 48px rgba(26,29,35,.10)}
+.slide:nth-of-type(even){background:var(--paper-2)}
+.slide.dark{background:var(--navy);color:#fff}
+.inner{width:100%;max-width:1320px;margin:0 auto}
+.kicker{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);font-weight:600}
+.dark .kicker{color:var(--accent)}
+h1,h2,h3{font-weight:600;line-height:1.05;letter-spacing:-.01em}
+h2{font-size:clamp(2rem,4.2vw,3.6rem);margin:.35em 0 .4em}
+h3{font-size:1.05rem;margin-bottom:.25em}
+p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
+.dark p.lead{color:#D7DCEB}
+.num{font-size:clamp(3rem,7vw,6.5rem);font-weight:600;color:transparent;-webkit-text-stroke:1.5px var(--navy);line-height:1}
+
+/* reveal on enter */
+.rv{opacity:0;transform:translateY(42px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.in .rv{opacity:1;transform:none}
+.in .rv.d1{transition-delay:.12s}.in .rv.d2{transition-delay:.24s}.in .rv.d3{transition-delay:.36s}.in .rv.d4{transition-delay:.48s}
+
+/* ---------- nav ---------- */
+.dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:12px}
+.dots a{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--navy);background:transparent;display:block;transition:all .3s}
+.dots a.on{background:var(--navy);transform:scale(1.25)}
+.dots.on-dark a{border-color:#fff}.dots.on-dark a.on{background:#fff}
+.bar{position:fixed;left:0;top:0;height:3px;background:var(--navy);z-index:60;width:0}
+.top{position:fixed;left:var(--pad);top:18px;z-index:55;font-weight:600;letter-spacing:.06em;font-size:.85rem;text-decoration:none;color:var(--navy);mix-blend-mode:multiply}
+
+/* ---------- hero ---------- */
+.hero .inner{display:grid;grid-template-columns:1.25fr .9fr;gap:clamp(24px,5vw,80px);align-items:center}
+.hero h1{font-size:clamp(3.2rem,9.5vw,8.6rem);color:var(--navy);line-height:.9;letter-spacing:-.02em}
+.hero h1 span{display:block;color:#C8C3B8}
+.hero .role{font-size:clamp(1.05rem,1.6vw,1.35rem);margin:1.1em 0 .7em;font-weight:600}
+.portrait{position:relative;aspect-ratio:1/1.05;background:#fff;overflow:hidden;border-radius:4px}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:top}
+.portrait::after{content:"";position:absolute;inset:auto 0 0 0;height:6px;background:var(--navy)}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;margin:1.6em 0;max-width:560px}
+.facts div{border-top:1px solid var(--line);padding-top:8px}
+.facts b{display:block;font-size:1.02rem}
+.facts small{color:var(--muted);font-size:.84rem}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border:1.5px solid var(--navy);border-radius:999px;
+  text-decoration:none;font-weight:600;font-size:.92rem;color:var(--navy);transition:all .25s}
+.btn:hover{background:var(--navy);color:#fff}
+.btn.solid{background:var(--navy);color:#fff}.btn.solid:hover{background:var(--navy-2)}
+.cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);animation:bob 2s infinite}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+
+/* ---------- CV ---------- */
+.cv .inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px)}
+.tl{list-style:none;border-left:2px solid var(--navy);padding-left:22px;margin-top:1em}
+.tl li{position:relative;margin-bottom:1.15em}
+.tl li::before{content:"";position:absolute;left:-29px;top:.45em;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--navy)}
+.tl .when{font-size:.8rem;color:var(--muted);letter-spacing:.04em}
+.tl p{font-size:.93rem;color:#3A3F48}
+.tools{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:.93rem;margin-top:1em}
+.tools dt{font-weight:600;color:var(--navy)}
+.tools dd{color:#3A3F48}
+.edu{margin-top:1.4em}
+.edu div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:8px 0;font-size:.95rem}
+.edu span{color:var(--muted);white-space:nowrap}
+
+/* ---------- projects ---------- */
+.proj .inner{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(24px,4vw,64px);align-items:center}
+.proj.flip .inner{grid-template-columns:1fr 1.35fr}
+.proj.flip .media{order:2}
+.media{position:relative;display:grid;gap:10px}
+.media .main{width:100%;height:min(62vh,640px);object-fit:cover;border-radius:4px}
+.media .row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.media .row img{width:100%;height:min(16vh,150px);object-fit:cover;border-radius:3px;background:#fff}
+.media .row.contain img{object-fit:contain}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:1em 0}
+.tags span{font-size:.76rem;padding:4px 10px;border-radius:999px;background:rgba(31,58,138,.08);color:var(--navy);font-weight:600}
+.stats{display:flex;gap:28px;margin:1.1em 0}
+.stats b{display:block;font-size:1.7rem;color:var(--navy);line-height:1.1}
+.stats small{color:var(--muted);font-size:.8rem}
+.link{font-weight:600;color:var(--navy);text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:1px}
+.note{font-size:.78rem;color:var(--muted);margin-top:.8em}
+
+/* ---------- gallery ---------- */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:min(20vh,200px);gap:10px;margin-top:1.4em}
+.gal img{width:100%;height:100%;object-fit:cover;border-radius:3px;transition:transform .5s}
+.gal img:hover{transform:scale(1.03)}
+.gal .w2{grid-column:span 2}.gal .h2{grid-row:span 2}
+
+/* ---------- code cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:1.4em}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:18px 18px 16px;text-decoration:none;display:flex;flex-direction:column;gap:8px;transition:all .25s}
+.card:hover{border-color:var(--navy);transform:translateY(-3px);box-shadow:0 10px 24px rgba(31,58,138,.10)}
+.card p{font-size:.88rem;color:#3A3F48;flex:1}
+.card .go{font-size:.8rem;font-weight:600;color:var(--navy)}
+
+/* ---------- contact ---------- */
+.contact h2{font-size:clamp(2.6rem,7vw,6rem);color:#fff}
+.contact .btn{border-color:#fff;color:#fff}.contact .btn:hover{background:#fff;color:var(--navy)}
+.contact .btn.solid{background:#fff;color:var(--navy)}
+.contact svg{width:100%;max-width:760px;margin-top:2.4em;opacity:.85}
+.foot{font-size:.78rem;color:#AFB8D6;margin-top:1.6em}
+
+/* ---------- small screens: normal scrolling, stacked layout ---------- */
+@media (max-width:900px){
+  html{scroll-snap-type:none}
+  .slide{position:relative;height:auto;min-height:100svh;box-shadow:none;padding-top:72px;padding-bottom:56px}
+  .hero .inner,.cv .inner,.proj .inner,.proj.flip .inner{grid-template-columns:1fr}
+  .proj.flip .media{order:0}
+  .hero .portrait{max-width:340px;order:-1}
+  .media .main{height:44vh}
+  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
+  .cards{grid-template-columns:1fr}
+  .dots{display:none}
+  .cue{display:none}
+}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<a class="top" href="#home">KIAN SHAFIEI</a>
+<nav class="dots" id="dots" aria-label="Sections"></nav>
+
+<!-- 1 · HERO -->
+<section class="slide hero" id="home" data-title="Home">
+  <div class="inner">
+    <div>
+      <div class="kicker rv">Architecture · AI · Computational design</div>
+      <h1 class="rv d1">KIAN<span>SHAFIEI</span></h1>
+      <p class="role rv d2">I design buildings and build the AI tools that help design them.</p>
+      <p class="lead rv d2">Architecture graduate with an MSc in Applied AI for Engineering. I set up façades and forms as rules in Rhino, Grasshopper and Dynamo, deliver in Revit, and use Python and machine learning to make design decisions faster and better informed, with the designer kept in control.</p>
+      <div class="facts rv d3">
+        <div><b>MSc Applied AI for Engineering</b><small>Distinction · University of Greenwich</small></div>
+        <div><b>B.E. Architecture</b><small>Distinction · Art University of Isfahan</small></div>
+        <div><b>Revit certified instructor</b><small>Autodesk</small></div>
+        <div><b>1st place, IFIA competition</b><small>AVAform, AI-assisted design</small></div>
+      </div>
+      <div class="btns rv d4">
+        <a class="btn solid" href="assets/Kian_Shafiei_CV.pdf" download>Download CV</a>
+        <a class="btn" href="#work">See projects</a>
+        <a class="btn" href="https://www.linkedin.com/in/kianshafiei" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/kianshafiei" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="portrait rv d2"><img src="assets/img/portrait.jpg" alt="Portrait of Kian Shafiei"></div>
+  </div>
+  <div class="cue">Scroll</div>
+</section>
+
+<!-- 2 · CV -->
+<section class="slide cv" id="cv" data-title="CV">
+  <div class="inner">
+    <div>
+      <div class="kicker rv">Curriculum vitae</div>
+      <h2 class="rv d1">Experience</h2>
+      <ul class="tl">
+        <li class="rv d1"><div class="when">Mar 2025 – Mar 2026 · Remote</div><h3>Machine Learning Intern, Aiolearn</h3>
+          <p>Built, tested and evaluated machine learning models in Python; contributed to team work on an LLM and a GAN.</p></li>
+        <li class="rv d2"><div class="when">Jan 2024 – Jan 2025 · Isfahan</div><h3>Architectural Technician (internship), Laari Studio</h3>
+          <p>Plans, sections, elevations and details for residential and commercial buildings.</p></li>
+        <li class="rv d3"><div class="when">Jan 2020 – Jan 2024 · Isfahan</div><h3>Architectural Design and Site Supervision, Tarh va Takmil</h3>
+          <p>Designed Villa 001 in Revit from brief to construction drawings; specified prefabricated windows and stairs; checked built work against drawings with engineers and subcontractors.</p></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="rv d1" style="margin-top:1.35em">Education</h2>
+      <div class="edu rv d2">
+        <div><b>MSc Applied AI for Engineering, Distinction</b><span>2025 – 2026</span></div>
+        <div style="border:0;padding-top:0;color:var(--muted);font-size:.88rem">University of Greenwich · dissertation: AI-driven 3D model retrieval for design briefs (82%)</div>
+        <div><b>B.E. Architecture, Distinction</b><span>2020 – 2024</span></div>
+        <div style="border:0;padding-top:0;color:var(--muted);font-size:.88rem">Art University of Isfahan · four-year degree</div>
+      </div>
+      <h2 class="rv d2" style="font-size:clamp(1.5rem,2.4vw,2rem);margin-top:1.2em">Tools</h2>
+      <dl class="tools rv d3">
+        <dt>Computational</dt><dd>Rhino, Grasshopper, Dynamo, Python / RhinoCommon</dd>
+        <dt>BIM</dt><dd>Revit (Architecture and Structure), AutoCAD, SketchUp</dd>
+        <dt>AI and code</dt><dd>Python, PyTorch, scikit-learn, LLM pipelines, APIs, Git, pytest</dd>
+        <dt>Visualisation</dt><dd>Enscape, V-Ray, Lumion, Photoshop</dd>
+        <dt>Also</dt><dd>CITB HS&amp;E (Managers and Professionals) · full UK driving licence · English, Persian</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · DAYLIGHT SURROGATE -->
+<section class="slide proj" id="work" data-title="Daylight surrogate">
+  <div class="inner">
+    <div class="media rv">
+      <img class="main" src="assets/img/dsur_curve.jpg" alt="Curved office façade with louvres and fins, AI daylight map on the top floor" loading="lazy">
+      <div class="row"><img src="assets/img/dsur_steps.gif" alt="The curved façade built step by step in Rhino and Grasshopper" loading="lazy"><img src="assets/img/dsur_opt.jpg" alt="Optimised shading bay by bay" loading="lazy"><img src="assets/img/dsur_acc.jpg" alt="Surrogate accuracy against the simulator" loading="lazy" style="object-fit:contain;background:#fff"></div>
+    </div>
+    <div>
+      <div class="num rv">01</div>
+      <div class="kicker rv d1">AI + parametric façade</div>
+      <h2 class="rv d1">Daylight surrogate</h2>
+      <p class="lead rv d2">A curved office block where every bay faces a different way. A neural network trained on 4,000 simulated designs predicts daylight on every desk and the solar gain through the glass, then tunes louvres and fins bay by bay, live in Grasshopper and in Dynamo for Revit.</p>
+      <div class="stats rv d3"><div><b>0.997</b><small>R² on unseen designs</small></div><div><b>~55×</b><small>faster than the simulator</small></div><div><b>8 bays</b><small>optimised in ~1 s</small></div></div>
+      <div class="tags rv d3"><span>Rhino 8</span><span>Grasshopper</span><span>Dynamo</span><span>Python</span><span>Neural network</span><span>Optimisation</span></div>
+      <a class="link rv d4" href="https://github.com/kianshafiei/daylight-surrogate" target="_blank" rel="noopener">Code and method on GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · GUGGENHEIM -->
+<section class="slide proj flip" data-title="Guggenheim">
+  <div class="inner">
+    <div class="media rv">
+      <img class="main" src="assets/img/gugg_final.jpg" alt="Parametric Guggenheim Bilbao in Rhino" loading="lazy">
+      <div class="row"><img src="assets/img/gugg_steps.gif" alt="The museum built up step by step" loading="lazy"><img src="assets/img/gugg_blocks.jpg" alt="Limestone blocks from OpenStreetMap footprints" loading="lazy"><img src="assets/img/gugg_rhino.jpg" alt="Rhino and Grasshopper with the definition" loading="lazy"></div>
+    </div>
+    <div>
+      <div class="num rv">02</div>
+      <div class="kicker rv d1">Complex geometry from open data</div>
+      <h2 class="rv d1">Parametric Guggenheim Bilbao</h2>
+      <p class="lead rv d2">The museum rebuilt from OpenStreetMap footprints with one rule: orthogonal parts become limestone blocks, free-form parts become lofted titanium volumes controlled by belly, pinch, rise, lean and twist, with a panel skin of about 15,600 scales.</p>
+      <div class="tags rv d3"><span>Rhino 8</span><span>Grasshopper</span><span>Python / RhinoCommon</span><span>OpenStreetMap</span></div>
+      <a class="link rv d4" href="https://github.com/kianshafiei/parametric-guggenheim-bilbao" target="_blank" rel="noopener">Code on GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · STONE FAÇADE -->
+<section class="slide proj" data-title="Stone façade">
+  <div class="inner">
+    <div class="media rv">
+      <img class="main" src="assets/img/stone.jpg" alt="Stone façade with chamfered panels" loading="lazy">
+      <div class="row contain"><img src="assets/img/stone_axo.jpg" alt="Panel nesting on the stone slab" loading="lazy"><img src="assets/img/stone_grid.jpg" alt="Selected panels in the façade bay" loading="lazy"><img src="assets/img/stone_detail.jpg" alt="Chamfered corners forming a diamond void" loading="lazy"></div>
+    </div>
+    <div>
+      <div class="num rv">03</div>
+      <div class="kicker rv d1">Constraint → rule</div>
+      <h2 class="rv d1">Stone façade</h2>
+      <p class="lead rv d2">Chamfered stone panels had to be cut from fixed slab sizes, and every offcut is stone paid for and wasted. I set the layout up in Grasshopper with slab size and panel profile as inputs, compared aligned, rotated, staggered and mixed nesting, and carried the selected layout onto the façade.</p>
+      <div class="tags rv d3"><span>Rhino</span><span>Grasshopper</span><span>Panel nesting</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · BRIDGE -->
+<section class="slide proj flip" data-title="Bridge roof">
+  <div class="inner">
+    <div class="media rv">
+      <img class="main" src="assets/img/bridge.jpg" alt="Bridge with a curved roof skin between two buildings" loading="lazy">
+      <div class="row"><img src="assets/img/bridge_cafe.jpg" alt="Café inside the bridge under the roof skin" loading="lazy"><img src="assets/img/bridge_wide.jpg" alt="Bridge seen from the plaza" loading="lazy"><img src="assets/img/hero.jpg" alt="Sketch and render of the bridge" loading="lazy"></div>
+    </div>
+    <div>
+      <div class="num rv">04</div>
+      <div class="kicker rv d1">Commercial complex</div>
+      <h2 class="rv d1">Bridge roof skin</h2>
+      <p class="lead rv d2">A bridge links two buildings and holds a café. The pedestrian route had to stay level while the roof skin rises smoothly above the supporting truss. I compared roof profiles against those fixed constraints in Grasshopper, then coordinated the layers as one model in Revit.</p>
+      <div class="tags rv d3"><span>Grasshopper</span><span>Revit</span><span>Parametric families</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · SHADING -->
+<section class="slide proj" data-title="Shading">
+  <div class="inner">
+    <div class="media rv">
+      <img class="main" src="assets/img/shading.jpg" alt="Curved façade with shading that changes with orientation" loading="lazy">
+    </div>
+    <div>
+      <div class="num rv">05</div>
+      <div class="kicker rv d1">Environment → form</div>
+      <h2 class="rv d1">Shading by orientation</h2>
+      <p class="lead rv d2">The same window bay gets different shading depending on where it faces: east-facing openings get closer, deeper elements; less exposed faces get lighter, more open ones. Two parameters drive it, spacing and depth, which later became the starting point for the daylight surrogate.</p>
+      <div class="tags rv d3"><span>Grasshopper</span><span>Revit</span><span>Environmental design</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · VILLA -->
+<section class="slide proj flip" data-title="Villa 001">
+  <div class="inner">
+    <div class="media rv">
+      <img class="main" src="assets/img/villa.jpg" alt="Villa 001 with a terrace shade structure and pool" loading="lazy">
+      <div class="row contain"><img src="assets/img/villa_plan.jpg" alt="Ground-floor plan" loading="lazy"><img src="assets/img/villa_window.jpg" alt="Prefabricated window panel" loading="lazy"><img src="assets/img/villa_stair.jpg" alt="Prefabricated stair" loading="lazy"></div>
+    </div>
+    <div>
+      <div class="num rv">06</div>
+      <div class="kicker rv d1">Design → construction</div>
+      <h2 class="rv d1">Villa 001</h2>
+      <p class="lead rv d2">A 188 m² private residence I designed in Revit from brief to construction drawings, now being built to those drawings: concrete frame, steel beams for the terrace shade structure, and prefabricated window panels and stairs that I specified and ordered.</p>
+      <div class="tags rv d3"><span>Revit</span><span>Construction drawings</span><span>Site supervision</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · CROFT -->
+<section class="slide proj" data-title="AI workflow">
+  <div class="inner">
+    <div class="media rv">
+      <img class="main" src="assets/img/croft.jpg" alt="Coastal library concept used as a CROFT test brief" loading="lazy">
+      <div class="row contain"><img src="assets/img/obj_chair.jpg" alt="Retrieved 3D model: chair" loading="lazy"><img src="assets/img/obj_shelf.jpg" alt="Retrieved 3D model: shelving" loading="lazy"><img src="assets/img/obj_wall.jpg" alt="Retrieved 3D model: stone wall" loading="lazy"></div>
+    </div>
+    <div>
+      <div class="num rv">07</div>
+      <div class="kicker rv d1">MSc research · 82%</div>
+      <h2 class="rv d1">AI in the design workflow</h2>
+      <p class="lead rv d2">CROFT turns a written design brief into structured queries with LLM steps, retrieves 3D models through the Sketchfab API and puts each result to the designer to keep or reject, with every decision logged. The architect keeps the decision; the AI does the searching.</p>
+      <div class="tags rv d3"><span>Python</span><span>LLMs</span><span>REST APIs</span><span>Human in the loop</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · VISUALISATION -->
+<section class="slide" data-title="Visualisation" style="padding-top:44px;padding-bottom:28px">
+  <div class="inner">
+    <div class="num rv">08</div>
+    <div class="kicker rv d1">Interiors · façades · lighting</div>
+    <h2 class="rv d1" style="margin-bottom:0">Visualisation</h2>
+    <div class="gal rv d2">
+      <img class="w2 h2" src="assets/img/int1.jpg" alt="Residential living room" loading="lazy">
+      <img src="assets/img/kit1.jpg" alt="Kitchen island" loading="lazy">
+      <img class="h2" src="assets/img/night2.jpg" alt="Residential façade at night, entrance" loading="lazy">
+      <img src="assets/img/kit2.jpg" alt="Kitchen joinery" loading="lazy">
+      <img src="assets/img/night1.jpg" alt="Residential façade at night" loading="lazy">
+      <img src="assets/img/int2.jpg" alt="Living room seating" loading="lazy">
+      <img src="assets/img/kit3.jpg" alt="Kitchen detail" loading="lazy">
+      <img src="assets/img/night3.jpg" alt="Façade lighting detail" loading="lazy">
+    </div>
+    <p class="note rv d3">Visualisations prepared for portfolio presentation from project material; some images are illustrative.</p>
+  </div>
+</section>
+
+<!-- 11 · CODE -->
+<section class="slide" data-title="Code">
+  <div class="inner">
+    <div class="num rv">09</div>
+    <div class="kicker rv d1">Machine learning · tested · on GitHub</div>
+    <h2 class="rv d1" style="margin-bottom:0">More AI projects</h2>
+    <div class="cards">
+      <a class="card rv d1" href="https://github.com/kianshafiei/drawing-to-quote" target="_blank" rel="noopener"><h3>Drawing to quote</h3><p>Reads engineering drawings with OCR and computer vision, checks them against engineering rules, finds similar jobs and drafts a quote, flagging uncertain fields for review.</p><span class="go">GitHub →</span></a>
+      <a class="card rv d2" href="https://github.com/kianshafiei/thermal-comfort-from-cheap-sensors" target="_blank" rel="noopener"><h3>Thermal comfort from cheap sensors</h3><p>Can an AC controller tell how occupants feel from its own sensors? ASHRAE Global Thermal Comfort Database II, tested on unseen buildings.</p><span class="go">GitHub →</span></a>
+      <a class="card rv d3" href="https://github.com/kianshafiei/human-ai-resilience-abm" target="_blank" rel="noopener"><h3>Human–AI team resilience</h3><p>Agent-based simulation of how teams of people and AI agents cope with and recover from disruption.</p><span class="go">GitHub →</span></a>
+      <a class="card rv d2" href="https://github.com/kianshafiei/student-early-warning" target="_blank" rel="noopener"><h3>Student early warning</h3><p>Flags students at risk of not completing from learning-platform data (OULAD), evaluated on an unseen cohort with calibration and fairness checks.</p><span class="go">GitHub →</span></a>
+      <a class="card rv d3" href="https://github.com/kianshafiei/volunteer-matcher" target="_blank" rel="noopener"><h3>Volunteer matcher</h3><p>Hybrid BM25 + MiniLM matching of people to opportunities, with explanations; FastAPI and Docker.</p><span class="go">GitHub →</span></a>
+      <a class="card rv d4" href="https://github.com/kianshafiei" target="_blank" rel="noopener"><h3>All repositories</h3><p>Every project ships with its data source, tests and an honest note on its limits.</p><span class="go">github.com/kianshafiei →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · CONTACT -->
+<section class="slide dark contact" id="contact" data-title="Contact">
+  <div class="inner">
+    <div class="kicker rv">Based in Kent · working across London and the South East</div>
+    <h2 class="rv d1">Let's talk.</h2>
+    <p class="lead rv d2">I'm looking for roles in computational design, digital construction, BIM and applied AI for the built environment.</p>
+    <div class="btns rv d3" style="margin-top:1.6em">
+      <a class="btn solid" href="mailto:kian.shafiei1380@gmail.com">kian.shafiei1380@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/kianshafiei" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/kianshafiei" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="assets/Kian_Shafiei_CV.pdf" download>Download CV</a>
+    </div>
+    <svg class="rv d4" viewBox="0 0 760 170" fill="none" stroke="#fff" stroke-width="1.2" aria-hidden="true">
+      <path d="M10 160H750"/><path d="M70 160V40h60v120M70 40c0-26 60-26 60 0"/><path d="M75 60h50M75 80h50M75 100h50M75 120h50M75 140h50"/>
+      <path d="M130 70c90 0 120-40 240-40s150 40 240 40"/><path d="M130 100h480"/><path d="M130 100 165 70M200 100l35-31M270 100l35-34M340 100l35-36M410 100l35-36M480 100l35-33M550 100l35-30"/>
+      <path d="M360 100l-14 60h28l-14-60"/><path d="M610 160V30h70v130"/><path d="M620 45h50M620 65h50M620 85h50M620 105h50M620 125h50M620 145h50"/>
+    </svg>
+    <p class="foot">© 2026 Kian Shafiei · Built with HTML and CSS, made in collaboration with Claude</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var dots=document.getElementById('dots'), bar=document.getElementById('bar');
+  slides.forEach(function(s,i){
+    if(!s.id) s.id='s'+i;
+    var a=document.createElement('a'); a.href='#'+s.id; a.title=s.dataset.title||''; a.setAttribute('aria-label',a.title);
+    dots.appendChild(a);
+  });
+  var links=[].slice.call(dots.children);
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        var i=slides.indexOf(e.target);
+        links.forEach(function(l,k){l.classList.toggle('on',k===i)});
+        dots.classList.toggle('on-dark',e.target.classList.contains('dark'));
+      }
+    });
+  },{threshold:0.45});
+  slides.forEach(function(s){io.observe(s)});
+  slides[0].classList.add('in');
+  function onScroll(){
+    var h=document.documentElement, max=h.scrollHeight-h.clientHeight;
+    bar.style.width=(max>0?100*h.scrollTop/max:0)+'%';
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  document.addEventListener('keydown',function(e){
+    if(['ArrowDown','PageDown','ArrowUp','PageUp'].indexOf(e.key)<0) return;
+    var cur=links.findIndex(function(l){return l.classList.contains('on')});
+    var nxt=Math.max(0,Math.min(slides.length-1,cur+(e.key==='ArrowDown'||e.key==='PageDown'?1:-1)));
+    if(nxt!==cur){e.preventDefault();slides[nxt].scrollIntoView({behavior:'smooth'});}
+  });
+})();
+</script>
+</body>
+</html>
