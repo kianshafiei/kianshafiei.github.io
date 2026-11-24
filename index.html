@@ -126,6 +126,24 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 .contact svg{width:100%;max-width:760px;margin-top:2.4em;opacity:.85}
 .foot{font-size:.78rem;color:#AFB8D6;margin-top:1.6em}
 
+
+/* ---------- contents ---------- */
+.toc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.toc .toc-item{aspect-ratio:16/10}
+.toc-item{position:relative;display:block;text-decoration:none;color:#fff;border-radius:5px;overflow:hidden;aspect-ratio:4/3;background:var(--ink)}
+.toc-item img{width:100%;height:100%;object-fit:cover;opacity:.62;transition:opacity .35s,transform .6s}
+.toc-item:hover img{opacity:.35;transform:scale(1.06)}
+.toc-item .tn{position:absolute;left:12px;top:8px;font-size:1.5rem;font-weight:600;color:transparent;-webkit-text-stroke:1px #fff}
+.toc-item .cap{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 9px;display:flex;flex-direction:column;gap:3px;
+  background:linear-gradient(transparent,rgba(15,18,26,.72))}
+.toc-item .tt{font-weight:600;font-size:.95rem;line-height:1.2}
+.toc-item .tk{font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:#E7D9B8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.toc-item.plain{background:var(--navy)}
+.toc-item.cvt{background:var(--paper);border:1.5px solid var(--navy);color:var(--navy)}
+.toc-item.cvt .tn{-webkit-text-stroke:1px var(--navy)}
+.toc-item.cvt .cap{background:none}
+.toc-item.cvt .tk{color:var(--muted)}
+.toc-item img{opacity:.8}
 /* ---------- small screens: normal scrolling, stacked layout ---------- */
 @media (max-width:900px){
   html{scroll-snap-type:none}
@@ -136,6 +154,8 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
   .media .main{height:44vh}
   .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
   .cards{grid-template-columns:1fr}
+  .toc-grid{grid-template-columns:repeat(2,1fr)}
+  .toc-item .tk{display:none}
   .dots{display:none}
   .top{display:none}
   .cue{display:none}
@@ -156,6 +176,9 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
   .gal{grid-auto-rows:17vh}
   .card{padding:14px}
   .card p{font-size:.84rem}
+  .toc-grid{gap:9px}
+  .toc .toc-item{aspect-ratio:16/9}
+  .toc h2{margin-top:.1em}
 }
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 </style>
@@ -181,7 +204,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
       </div>
       <div class="btns rv d4">
         <a class="btn solid" href="assets/Kian_Shafiei_CV.pdf" download>Download CV</a>
-        <a class="btn" href="#work">See projects</a>
+        <a class="btn" href="#contents">See projects</a>
         <a class="btn" href="https://www.linkedin.com/in/kianshafiei" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn" href="https://github.com/kianshafiei" target="_blank" rel="noopener">GitHub</a>
       </div>
@@ -189,6 +212,33 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
     <div class="portrait rv d2"><img src="assets/img/portrait.jpg" alt="Portrait of Kian Shafiei"></div>
   </div>
   <div class="cue">Scroll</div>
+</section>
+
+
+<!-- CONTENTS -->
+<section class="slide toc" id="contents" data-title="Contents">
+  <div class="inner">
+    <div class="kicker rv">Contents</div>
+    <h2 class="rv d1" style="margin-bottom:.2em">Selected work</h2>
+    <p class="lead rv d1" style="margin-bottom:1.2em">AI and computational design first, then architecture, interiors and visualisation. <a class="link" href="#cv">Or jump to my CV →</a></p>
+    <div class="toc-grid">
+      <a class="toc-item rv d1" href="#p01"><img src="assets/img/dsur_curve.jpg" alt="" loading="lazy"><span class="tn">01</span><span class="cap"><span class="tt">Daylight surrogate</span><span class="tk">AI + parametric façade</span></span></a>
+      <a class="toc-item rv d1" href="#p02"><img src="assets/img/gugg_final.jpg" alt="" loading="lazy"><span class="tn">02</span><span class="cap"><span class="tt">Parametric Guggenheim Bilbao</span><span class="tk">Complex geometry from open data</span></span></a>
+      <a class="toc-item rv d1" href="#p03"><img src="assets/img/tl_render.jpg" alt="" loading="lazy"><span class="tn">03</span><span class="cap"><span class="tt">Tantallon coastal library &amp; café</span><span class="tk">AI-assisted concept design</span></span></a>
+      <a class="toc-item rv d1" href="#p04"><img src="assets/img/stone.jpg" alt="" loading="lazy"><span class="tn">04</span><span class="cap"><span class="tt">Stone façade</span><span class="tk">Constraint → rule</span></span></a>
+      <a class="toc-item rv d2" href="#p05"><img src="assets/img/bridge.jpg" alt="" loading="lazy"><span class="tn">05</span><span class="cap"><span class="tt">Bridge roof skin</span><span class="tk">Commercial complex</span></span></a>
+      <a class="toc-item rv d2" href="#p06"><img src="assets/img/shading.jpg" alt="" loading="lazy"><span class="tn">06</span><span class="cap"><span class="tt">Shading by orientation</span><span class="tk">Environment → form</span></span></a>
+      <a class="toc-item rv d2" href="#p07"><img src="assets/img/villa.jpg" alt="" loading="lazy"><span class="tn">07</span><span class="cap"><span class="tt">Villa 001</span><span class="tk">Design → construction</span></span></a>
+      <a class="toc-item rv d2" href="#p08"><img src="assets/img/croft.jpg" alt="" loading="lazy"><span class="tn">08</span><span class="cap"><span class="tt">AI in the design workflow</span><span class="tk">MSc research · 82%</span></span></a>
+      <a class="toc-item rv d3" href="#p09"><img src="assets/img/fd_1.jpg" alt="" loading="lazy"><span class="tn">09</span><span class="cap"><span class="tt">Apartment façade</span><span class="tk">Visualisation · residential</span></span></a>
+      <a class="toc-item rv d3" href="#p10"><img src="assets/img/fn_main.jpg" alt="" loading="lazy"><span class="tn">10</span><span class="cap"><span class="tt">Residential façade at night</span><span class="tk">Visualisation · lighting</span></span></a>
+      <a class="toc-item rv d3" href="#p11"><img src="assets/img/ri_main.jpg" alt="" loading="lazy"><span class="tn">11</span><span class="cap"><span class="tt">Living, dining and kitchen</span><span class="tk">Visualisation · residential interior</span></span></a>
+      <a class="toc-item rv d3" href="#p12"><img src="assets/img/rs_main.jpg" alt="" loading="lazy"><span class="tn">12</span><span class="cap"><span class="tt">Electronics store</span><span class="tk">Visualisation · retail interior</span></span></a>
+      <a class="toc-item rv d4" href="#p13"><img src="assets/img/ba_main.jpg" alt="" loading="lazy"><span class="tn">13</span><span class="cap"><span class="tt">Bathrooms, three schemes</span><span class="tk">Visualisation · bathrooms</span></span></a>
+      <a class="toc-item rv d4 plain" href="#code"><span class="tn">14</span><span class="cap"><span class="tt">More AI projects</span><span class="tk">Machine learning · on GitHub</span></span></a>
+      <a class="toc-item rv d4 plain cvt" href="#cv"><span class="tn">CV</span><span class="cap"><span class="tt">Experience, education and tools</span><span class="tk">Curriculum vitae</span></span></a>
+    </div>
+  </div>
 </section>
 
 <!-- 2 · CV -->
@@ -227,7 +277,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 3 · DAYLIGHT SURROGATE -->
-<section class="slide proj" id="work" data-title="Daylight surrogate">
+<section id="p01" class="slide proj" data-title="Daylight surrogate">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/dsur_curve.jpg" alt="Curved office façade with louvres and fins, AI daylight map on the top floor" loading="lazy">
@@ -246,7 +296,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 4 · GUGGENHEIM -->
-<section class="slide proj flip" data-title="Guggenheim">
+<section id="p02" class="slide proj flip" data-title="Guggenheim">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/gugg_final.jpg" alt="Parametric Guggenheim Bilbao in Rhino" loading="lazy">
@@ -264,7 +314,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 
-<section class="slide proj" data-title="Tantallon library">
+<section id="p03" class="slide proj" data-title="Tantallon library">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/tl_render.jpg" alt="The library set into the clifftop, facing Tantallon Castle" loading="lazy">
@@ -281,7 +331,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 5 · STONE FAÇADE -->
-<section class="slide proj flip" data-title="Stone façade">
+<section id="p04" class="slide proj flip" data-title="Stone façade">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/stone.jpg" alt="Stone façade with chamfered panels" loading="lazy">
@@ -298,7 +348,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 6 · BRIDGE -->
-<section class="slide proj" data-title="Bridge roof">
+<section id="p05" class="slide proj" data-title="Bridge roof">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/bridge.jpg" alt="Bridge with a curved roof skin between two buildings" loading="lazy">
@@ -315,7 +365,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 7 · SHADING -->
-<section class="slide proj flip" data-title="Shading">
+<section id="p06" class="slide proj flip" data-title="Shading">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/shading.jpg" alt="Curved façade with shading that changes with orientation" loading="lazy">
@@ -331,7 +381,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 8 · VILLA -->
-<section class="slide proj" data-title="Villa 001">
+<section id="p07" class="slide proj" data-title="Villa 001">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/villa.jpg" alt="Villa 001 with a terrace shade structure and pool" loading="lazy">
@@ -348,7 +398,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 9 · CROFT -->
-<section class="slide proj flip" data-title="AI workflow">
+<section id="p08" class="slide proj flip" data-title="AI workflow">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/croft.jpg" alt="Coastal library concept used as a CROFT test brief" loading="lazy">
@@ -365,7 +415,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 
-<section class="slide proj" data-title="Façade">
+<section id="p09" class="slide proj" data-title="Façade">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/fd_1.jpg" alt="Apartment façade by day" loading="lazy">
@@ -381,7 +431,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
   </div>
 </section>
 
-<section class="slide proj flip" data-title="Night façade">
+<section id="p10" class="slide proj flip" data-title="Night façade">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/fn_main.jpg" alt="Residential façade lit at night" loading="lazy">
@@ -397,7 +447,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
   </div>
 </section>
 
-<section class="slide proj" data-title="Interiors">
+<section id="p11" class="slide proj" data-title="Interiors">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/ri_main.jpg" alt="Living room with sculpted ceiling" loading="lazy">
@@ -413,7 +463,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
   </div>
 </section>
 
-<section class="slide proj flip" data-title="Retail">
+<section id="p12" class="slide proj flip" data-title="Retail">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/rs_main.jpg" alt="Electronics store interior" loading="lazy">
@@ -429,7 +479,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
   </div>
 </section>
 
-<section class="slide proj" data-title="Bathrooms">
+<section id="p13" class="slide proj" data-title="Bathrooms">
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/ba_main.jpg" alt="Bathroom with backlit panels" loading="lazy">
@@ -448,7 +498,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 11 · CODE -->
-<section class="slide" data-title="Code">
+<section class="slide" id="code" data-title="Code">
   <div class="inner">
     <div class="num rv">14</div>
     <div class="kicker rv d1">Machine learning · tested · on GitHub</div>
