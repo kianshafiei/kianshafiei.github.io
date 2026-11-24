@@ -23,6 +23,8 @@
 html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
 body{font-family:Plex,system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:inherit}
+.top .mark{height:22px;width:auto;color:inherit}
+body.on-dark .top{color:#fff;mix-blend-mode:normal}
 img{display:block;max-width:100%}
 
 /* ---------- slides ---------- */
@@ -52,7 +54,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 .dots a.on{background:var(--navy);transform:scale(1.25)}
 .dots.on-dark a{border-color:#fff}.dots.on-dark a.on{background:#fff}
 .bar{position:fixed;left:0;top:0;height:3px;background:var(--navy);z-index:60;width:0}
-.top{position:fixed;left:var(--pad);top:18px;z-index:55;font-weight:600;letter-spacing:.06em;font-size:.85rem;text-decoration:none;color:var(--navy);mix-blend-mode:multiply}
+.top{position:fixed;left:var(--pad);top:16px;z-index:55;display:flex;align-items:flex-end;gap:9px;font-weight:600;letter-spacing:.06em;font-size:.85rem;text-decoration:none;color:var(--navy);mix-blend-mode:multiply}
 
 /* ---------- hero ---------- */
 .hero .inner{display:grid;grid-template-columns:1.25fr .9fr;gap:clamp(24px,5vw,80px);align-items:center}
@@ -60,7 +62,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 .hero h1 span{display:block;color:#8E877A}
 .hero .role{font-size:clamp(1.05rem,1.6vw,1.35rem);margin:1.1em 0 .7em;font-weight:600}
 .portrait{position:relative;aspect-ratio:1/1.05;background:#fff;overflow:hidden;border-radius:4px}
-.portrait img{width:100%;height:100%;object-fit:cover;object-position:top}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 .portrait::after{content:"";position:absolute;inset:auto 0 0 0;height:6px;background:var(--navy)}
 .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;margin:1.6em 0;max-width:560px}
 .facts div{border-top:1px solid var(--line);padding-top:8px}
@@ -123,7 +125,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 .contact h2{font-size:clamp(2.6rem,7vw,6rem);color:#fff}
 .contact .btn{border-color:#fff;color:#fff}.contact .btn:hover{background:#fff;color:var(--navy)}
 .contact .btn.solid{background:#fff;color:var(--navy)}
-.contact svg{width:100%;max-width:760px;margin-top:2.4em;opacity:.85}
+.contact svg.sym{display:block;width:100%;height:auto;max-width:620px;margin-top:2.4em;color:#fff;opacity:.9}
 .foot{font-size:.78rem;color:#AFB8D6;margin-top:1.6em}
 
 
@@ -139,6 +141,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 .toc-item .tt{font-weight:600;font-size:.95rem;line-height:1.2}
 .toc-item .tk{font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:#E7D9B8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .toc-item.plain{background:var(--navy)}
+.toc-item.grid{background:#F4F1EA}.toc-item.grid img{opacity:1;object-fit:contain;padding:8px 8px 40px}.toc-item.grid:hover img{opacity:1;transform:scale(1.04)}
 .toc-item.cvt{background:var(--paper);border:1.5px solid var(--navy);color:var(--navy)}
 .toc-item.cvt .tn{-webkit-text-stroke:1px var(--navy)}
 .toc-item.cvt .cap{background:none}
@@ -185,7 +188,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </head>
 <body>
 <div class="bar" id="bar"></div>
-<a class="top" href="#home">KIAN SHAFIEI</a>
+<a class="top" href="#home"><svg class="mark" xmlns="http://www.w3.org/2000/svg" width="94" height="32" viewBox="0 0 94 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M1.0 30V17.5L4.0 16.0V30 M6.0 30V15.9L10.5 13.7V30 M13.7 30V14.3L19.7 11.3V30 M24.1 30V12.8L31.6 9.0V30 M37.2 30V11.2L46.2 6.7V30 M53.0 30V9.6L63.5 4.3V30 M71.5 30V8.0L83.5 2.0V30"/><path d="M0 30H94"/></svg>KIAN SHAFIEI</a>
 <nav class="dots" id="dots" aria-label="Sections"></nav>
 
 <!-- 1 · HERO -->
@@ -209,7 +212,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
         <a class="btn" href="https://github.com/kianshafiei" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
-    <div class="portrait rv d2"><img src="assets/img/portrait.jpg" alt="Portrait of Kian Shafiei"></div>
+    <div class="portrait rv d2"><img src="assets/img/portrait.jpg" alt="Portrait of Kian Shafiei" width="1122" height="1234"></div>
   </div>
   <div class="cue">Scroll</div>
 </section>
@@ -259,17 +262,16 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
     <div class="toc-grid">
       <a class="toc-item rv d1" href="#p01"><img src="assets/img/shading.jpg" alt="" loading="lazy"><span class="tn">01</span><span class="cap"><span class="tt">Daylight surrogate</span><span class="tk">AI + parametric façade</span></span></a>
       <a class="toc-item rv d1" href="#p02"><img src="assets/img/gugg_render.jpg" alt="" loading="lazy"><span class="tn">02</span><span class="cap"><span class="tt">Parametric Guggenheim Bilbao</span><span class="tk">Complex geometry from open data</span></span></a>
-      <a class="toc-item rv d1" href="#p03"><img src="assets/img/tl_render.jpg" alt="" loading="lazy"><span class="tn">03</span><span class="cap"><span class="tt">Tantallon coastal library &amp; café</span><span class="tk">AI-assisted concept design</span></span></a>
+      <a class="toc-item rv d1" href="#p03"><img src="assets/img/tl_render.jpg" alt="" loading="lazy"><span class="tn">03</span><span class="cap"><span class="tt">Tantallon coastal library &amp; café</span><span class="tk">AI in the design workflow</span></span></a>
       <a class="toc-item rv d1" href="#p04"><img src="assets/img/stone.jpg" alt="" loading="lazy"><span class="tn">04</span><span class="cap"><span class="tt">Stone façade</span><span class="tk">Constraint → rule</span></span></a>
       <a class="toc-item rv d2" href="#p05"><img src="assets/img/bridge.jpg" alt="" loading="lazy"><span class="tn">05</span><span class="cap"><span class="tt">Bridge roof skin</span><span class="tk">Commercial complex</span></span></a>
       <a class="toc-item rv d2" href="#p07"><img src="assets/img/villa.jpg" alt="" loading="lazy"><span class="tn">06</span><span class="cap"><span class="tt">Villa 001</span><span class="tk">Design → construction</span></span></a>
-      <a class="toc-item rv d2" href="#p08"><img src="assets/img/croft.jpg" alt="" loading="lazy"><span class="tn">07</span><span class="cap"><span class="tt">AI in the design workflow</span><span class="tk">MSc research · 82%</span></span></a>
-      <a class="toc-item rv d3" href="#p09"><img src="assets/img/fd_1.jpg" alt="" loading="lazy"><span class="tn">08</span><span class="cap"><span class="tt">Apartment façade</span><span class="tk">Visualisation · residential</span></span></a>
-      <a class="toc-item rv d3" href="#p10"><img src="assets/img/fn_main.jpg" alt="" loading="lazy"><span class="tn">09</span><span class="cap"><span class="tt">Residential façade at night</span><span class="tk">Visualisation · lighting</span></span></a>
-      <a class="toc-item rv d3" href="#p11"><img src="assets/img/ri_main.jpg" alt="" loading="lazy"><span class="tn">10</span><span class="cap"><span class="tt">Living, dining and kitchen</span><span class="tk">Visualisation · residential interior</span></span></a>
-      <a class="toc-item rv d3" href="#p12"><img src="assets/img/rs_main.jpg" alt="" loading="lazy"><span class="tn">11</span><span class="cap"><span class="tt">Electronics store</span><span class="tk">Visualisation · retail interior</span></span></a>
-      <a class="toc-item rv d4" href="#p13"><img src="assets/img/ba_main.jpg" alt="" loading="lazy"><span class="tn">12</span><span class="cap"><span class="tt">Bathrooms, three schemes</span><span class="tk">Visualisation · bathrooms</span></span></a>
-      <a class="toc-item rv d4 plain" href="#code"><span class="tn">13</span><span class="cap"><span class="tt">More AI projects</span><span class="tk">Machine learning · on GitHub</span></span></a>
+      <a class="toc-item rv d3" href="#p09"><img src="assets/img/fd_1.jpg" alt="" loading="lazy"><span class="tn">07</span><span class="cap"><span class="tt">Apartment façade</span><span class="tk">Visualisation · residential</span></span></a>
+      <a class="toc-item rv d3" href="#p10"><img src="assets/img/fn_main.jpg" alt="" loading="lazy"><span class="tn">08</span><span class="cap"><span class="tt">Residential façade at night</span><span class="tk">Visualisation · lighting</span></span></a>
+      <a class="toc-item rv d3" href="#p11"><img src="assets/img/ri_main.jpg" alt="" loading="lazy"><span class="tn">09</span><span class="cap"><span class="tt">Living, dining and kitchen</span><span class="tk">Visualisation · residential interior</span></span></a>
+      <a class="toc-item rv d3" href="#p12"><img src="assets/img/rs_main.jpg" alt="" loading="lazy"><span class="tn">10</span><span class="cap"><span class="tt">Electronics store</span><span class="tk">Visualisation · retail interior</span></span></a>
+      <a class="toc-item rv d4" href="#p13"><img src="assets/img/ba_main.jpg" alt="" loading="lazy"><span class="tn">11</span><span class="cap"><span class="tt">Bathrooms, three schemes</span><span class="tk">Visualisation · bathrooms</span></span></a>
+      <a class="toc-item rv d4 grid" href="#code"><img src="assets/img/symbol_grid.jpg" alt="" loading="lazy"><span class="tn">12</span><span class="cap"><span class="tt">More AI projects</span><span class="tk">Machine learning · on GitHub</span></span></a>
       <a class="toc-item rv d4 plain cvt" href="#cv"><span class="tn">CV</span><span class="cap"><span class="tt">Experience, education and tools</span><span class="tk">Curriculum vitae</span></span></a>
     </div>
   </div>
@@ -318,14 +320,14 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
   <div class="inner">
     <div class="media rv">
       <img class="main" src="assets/img/tl_render.jpg" alt="The library set into the clifftop, facing Tantallon Castle" loading="lazy">
-      <div class="row"><a href="assets/img/tl_1.jpg" target="_blank"><img src="assets/img/tl_1.jpg" alt="Board 1: the building is not seen, it is discovered" loading="lazy"></a><a href="assets/img/tl_2.jpg" target="_blank"><img src="assets/img/tl_2.jpg" alt="Board 2: plans and spaces" loading="lazy"></a><a href="assets/img/tl_3.jpg" target="_blank"><img src="assets/img/tl_3.jpg" alt="Board 3: the carved section and the AI workflow" loading="lazy"></a></div>
+      <div class="row"><a href="assets/img/tl_1.jpg" target="_blank"><img src="assets/img/tl_1.jpg" alt="Board 1: the building is not seen, it is discovered" loading="lazy"></a><img src="assets/img/croft_models.jpg" alt="3D models retrieved by CROFT for the brief" loading="lazy" style="object-fit:contain;background:#fff"><a href="assets/img/tl_3.jpg" target="_blank"><img src="assets/img/tl_3.jpg" alt="Board 3: the carved section and the AI workflow" loading="lazy"></a></div>
     </div>
     <div>
       <div class="num rv">03</div>
-      <div class="kicker rv d1">AI-assisted concept design</div>
+      <div class="kicker rv d1">AI in the design workflow · MSc research 82%</div>
       <h2 class="rv d1">Tantallon coastal library &amp; café</h2>
-      <p class="lead rv d2">A landform library set into the clifftop at Tyninghame, East Lothian, facing the ruin of Tantallon Castle. The brief was turned into six vernacular rules taken from the Hebridean blackhouse, then generated with AI and curated against them: twelve logged interactions, three rejected directions, every output checked by hand.</p>
-      <div class="tags rv d3"><span>Concept design</span><span>Generative AI</span><span>Curation workflow</span><span>Environmental logic</span></div>
+      <p class="lead rv d2">My MSc research put AI inside the design process and tested it on one brief: a landform library and café set into the clifftop at Tyninghame, facing Tantallon Castle. CROFT turns the written brief into structured queries with LLM steps, retrieves 3D models through the Sketchfab API and puts each to the designer to keep or reject. The concept itself was generated with AI and curated against six rules from the Hebridean blackhouse: twelve logged interactions, three rejected directions, every output checked by hand.</p>
+      <div class="tags rv d3"><span>Python</span><span>LLMs</span><span>REST APIs</span><span>Generative AI</span><span>Human in the loop</span></div>
     </div>
   </div>
 </section>
@@ -384,21 +386,6 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 </section>
 
 <!-- 9 · CROFT -->
-<section id="p08" class="slide proj flip" data-title="AI workflow">
-  <div class="inner">
-    <div class="media rv">
-      <img class="main" src="assets/img/croft.jpg" alt="Coastal library concept used as a CROFT test brief" loading="lazy">
-      <div class="row contain"><img src="assets/img/obj_chair.jpg" alt="Retrieved 3D model: chair" loading="lazy"><img src="assets/img/obj_shelf.jpg" alt="Retrieved 3D model: shelving" loading="lazy"><img src="assets/img/obj_wall.jpg" alt="Retrieved 3D model: stone wall" loading="lazy"></div>
-    </div>
-    <div>
-      <div class="num rv">07</div>
-      <div class="kicker rv d1">MSc research · 82%</div>
-      <h2 class="rv d1">AI in the design workflow</h2>
-      <p class="lead rv d2">CROFT turns a written design brief into structured queries with LLM steps, retrieves 3D models through the Sketchfab API and puts each result to the designer to keep or reject, with every decision logged. The architect keeps the decision; the AI does the searching.</p>
-      <div class="tags rv d3"><span>Python</span><span>LLMs</span><span>REST APIs</span><span>Human in the loop</span></div>
-    </div>
-  </div>
-</section>
 
 
 <section id="p09" class="slide proj" data-title="Façade">
@@ -408,7 +395,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
       <div class="row"><img src="assets/img/fd_2.jpg" alt="Façade, corner view" loading="lazy"><img src="assets/img/fd_3.jpg" alt="Façade, street level" loading="lazy"><img src="assets/img/night1.jpg" alt="Night façade" loading="lazy"></div>
     </div>
     <div>
-      <div class="num rv">08</div>
+      <div class="num rv">07</div>
       <div class="kicker rv d1">Visualisation · residential</div>
       <h2 class="rv d1">Apartment façade</h2>
       <p class="lead rv d2">A mid-rise residential façade of stepped white frames and planted balconies, shown in its street context from three viewpoints.</p>
@@ -424,7 +411,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
       <div class="row"><img src="assets/img/fn_2.jpg" alt="Entrance at night" loading="lazy"><img src="assets/img/fn_3.jpg" alt="Façade detail" loading="lazy"><img src="assets/img/fn_4.jpg" alt="Upper storeys" loading="lazy"></div>
     </div>
     <div>
-      <div class="num rv">09</div>
+      <div class="num rv">08</div>
       <div class="kicker rv d1">Visualisation · lighting</div>
       <h2 class="rv d1">Residential façade at night</h2>
       <p class="lead rv d2">Recessed linear lighting traces the façade's stepped frames and fluted panels, studied from the street and in close-up.</p>
@@ -440,7 +427,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
       <div class="row"><img src="assets/img/ri_2.jpg" alt="Kitchen and dining" loading="lazy"><img src="assets/img/ri_3.jpg" alt="Kitchen" loading="lazy"><img src="assets/img/kit2.jpg" alt="Kitchen joinery" loading="lazy"></div>
     </div>
     <div>
-      <div class="num rv">10</div>
+      <div class="num rv">09</div>
       <div class="kicker rv d1">Visualisation · residential interior</div>
       <h2 class="rv d1">Living, dining and kitchen</h2>
       <p class="lead rv d2">A residential interior: sculpted ceiling coves, a feature pendant, a dark joinery wall and a kitchen island, with day and evening lighting.</p>
@@ -456,7 +443,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
       <div class="row"><img src="assets/img/rs_2.jpg" alt="Display joinery" loading="lazy"><img src="assets/img/rs_3.jpg" alt="Headphone wall" loading="lazy"><img src="assets/img/rs_4.jpg" alt="Arched feature wall" loading="lazy"></div>
     </div>
     <div>
-      <div class="num rv">11</div>
+      <div class="num rv">10</div>
       <div class="kicker rv d1">Visualisation · retail interior</div>
       <h2 class="rv d1">Electronics store</h2>
       <p class="lead rv d2">A retail fit-out in timber joinery and white render: display niches, product tables and an arched feature wall.</p>
@@ -472,7 +459,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
       <div class="row"><img src="assets/img/ba_2.jpg" alt="Stone bathroom" loading="lazy"><img src="assets/img/ba_3.jpg" alt="Stone vanity" loading="lazy"><img src="assets/img/ba_4.jpg" alt="Terrazzo bathroom" loading="lazy"></div>
     </div>
     <div>
-      <div class="num rv">12</div>
+      <div class="num rv">11</div>
       <div class="kicker rv d1">Visualisation · bathrooms</div>
       <h2 class="rv d1">Bathrooms, three schemes</h2>
       <p class="lead rv d2">Three bathroom schemes from dark stone and backlit panels to pale terrazzo and blue tiling, each with its own lighting.</p>
@@ -486,7 +473,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
 <!-- 11 · CODE -->
 <section class="slide" id="code" data-title="Code">
   <div class="inner">
-    <div class="num rv">13</div>
+    <div class="num rv">12</div>
     <div class="kicker rv d1">Machine learning · tested · on GitHub</div>
     <h2 class="rv d1" style="margin-bottom:0">More AI projects</h2>
     <div class="cards">
@@ -513,11 +500,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
       <a class="btn" href="assets/Kian_Shafiei_CV.pdf" download>Download CV</a>
       <a class="btn" href="assets/Kian_Shafiei_Visualisation_Portfolio.pdf" target="_blank" rel="noopener">Visualisation portfolio</a>
     </div>
-    <svg class="rv d4" viewBox="0 0 760 170" fill="none" stroke="#fff" stroke-width="1.2" aria-hidden="true">
-      <path d="M10 160H750"/><path d="M70 160V40h60v120M70 40c0-26 60-26 60 0"/><path d="M75 60h50M75 80h50M75 100h50M75 120h50M75 140h50"/>
-      <path d="M130 70c90 0 120-40 240-40s150 40 240 40"/><path d="M130 100h480"/><path d="M130 100 165 70M200 100l35-31M270 100l35-34M340 100l35-36M410 100l35-36M480 100l35-33M550 100l35-30"/>
-      <path d="M360 100l-14 60h28l-14-60"/><path d="M610 160V30h70v130"/><path d="M620 45h50M620 65h50M620 85h50M620 105h50M620 125h50M620 145h50"/>
-    </svg>
+    <svg class="rv d4 sym" xmlns="http://www.w3.org/2000/svg" width="1127" height="370" viewBox="0 0 1127 370" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M10.0 360 V168.3 L16.0 165.0 V360 M19.9 360 V160.7 L26.4 157.1 V360 M30.9 360 V153.5 L38.7 149.2 V360 M44.0 360 V146.5 L53.4 141.3 V360 M59.5 360 V139.7 L70.9 133.4 V360 M78.0 360 V133.1 L91.8 125.5 V360 M100.1 360 V126.7 L116.5 117.6 V360 M126.2 360 V120.4 L145.5 109.7 V360 M156.7 360 V114.2 L179.3 101.8 V360 M192.3 360 V108.2 L218.3 93.9 V360 M233.5 360 V102.4 L263.1 86.1 V360 M280.9 360 V96.6 L314.4 78.2 V360 M335.1 360 V91.0 L372.7 70.3 V360 M396.8 360 V85.4 L438.7 62.4 V360 M466.8 360 V80.0 L513.2 54.5 V360 M545.9 360 V74.7 L597.1 46.6 V360 M635.2 360 V69.6 L691.3 38.7 V360 M735.6 360 V64.5 L796.9 30.8 V360 M848.5 360 V59.5 L915.0 22.9 V360 M975.2 360 V54.6 L1047.2 15.0 V360"/><path d="M0 360 H1127"/></svg>
     <p class="foot">© 2026 Kian Shafiei · Built with HTML and CSS, made in collaboration with Claude</p>
   </div>
 </section>
@@ -539,6 +522,7 @@ p.lead{font-size:clamp(1rem,1.35vw,1.2rem);color:var(--muted);max-width:40em}
         var i=slides.indexOf(e.target);
         links.forEach(function(l,k){l.classList.toggle('on',k===i)});
         dots.classList.toggle('on-dark',e.target.classList.contains('dark'));
+        document.body.classList.toggle('on-dark',e.target.classList.contains('dark'));
       }
     });
   },{threshold:0.45});
